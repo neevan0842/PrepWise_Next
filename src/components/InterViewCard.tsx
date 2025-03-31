@@ -65,8 +65,9 @@ const InterViewCard = ({
                   ? `/interview/${interviewId}/feedback`
                   : `/interview/${interviewId}`
               }
-            />
-            {feedback ? "Check Feedback" : "View Interview"}
+            >
+              {feedback ? "Check Feedback" : "View Interview"}
+            </Link>
           </Button>
         </div>
       </div>

@@ -1,11 +1,10 @@
 import InterViewCard from "@/components/InterViewCard";
 import { Button } from "@/components/ui/button";
-import { dummyInterviews } from "@/constants";
+import { getCurrentUser } from "@/lib/actions/auth.action";
 import {
-  getCurrentUser,
   getInterviewsUserId,
   getLatestInterviews,
-} from "@/lib/actions/auth.action";
+} from "@/lib/actions/general.action";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -44,7 +43,15 @@ const page = async () => {
         <div className="interviews-section">
           {hasPastInterviews ? (
             userInterviews?.map((interview) => (
-              <InterViewCard {...interview} key={interview.id} />
+              <InterViewCard
+                key={interview.id}
+                userId={user?.id}
+                interviewId={interview.id}
+                role={interview.role}
+                type={interview.type}
+                techstack={interview.techstack}
+                createdAt={interview.createdAt}
+              />
             ))
           ) : (
             <p>You haven't taken any interviews</p>
@@ -56,7 +63,15 @@ const page = async () => {
         <div className="interviews-section">
           {hasUpcomingInterviews ? (
             latestInterviews?.map((interview) => (
-              <InterViewCard {...interview} key={interview.id} />
+              <InterViewCard
+                key={interview.id}
+                userId={user?.id}
+                interviewId={interview.id}
+                role={interview.role}
+                type={interview.type}
+                techstack={interview.techstack}
+                createdAt={interview.createdAt}
+              />
             ))
           ) : (
             <p>There are no interviews available</p>
