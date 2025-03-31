@@ -5,7 +5,7 @@ import { getInterviewById } from "@/lib/actions/general.action";
 import { getRandomInterviewCover } from "@/lib/utils";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import React from "react";
+import React, { use } from "react";
 
 const page = async ({ params }: RouteParams) => {
   const { id } = await params;
@@ -34,7 +34,8 @@ const page = async ({ params }: RouteParams) => {
         </p>
       </div>
       <Agent
-        userName={user?.name!}
+        userName={user?.name || ""}
+        userId={user?.id}
         type="interview"
         interviewId={id}
         questions={interview.questions}
